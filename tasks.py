@@ -48,7 +48,7 @@ def test(c):
     Args:
         c: context arg to pass to invoke.
     """
-    c.run("tox")
+    c.run("tox src --skip-missing-interpreters")
 
 
 @task

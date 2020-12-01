@@ -2,11 +2,11 @@
 
 _Description:_ Repo for Advent of Code 2020.
 
+Day 1: Done
+
 ## Usage
 
 This repo uses invoke to do things.
-
-## TODO
 
 ## Installation
 
