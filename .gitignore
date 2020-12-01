@@ -1,0 +1,11 @@
+# python
+*.pyc
+build
+dist
+src/*.egg-info
+
+# sphinx docs
+docs/_build
+
+# logs
+*.log
