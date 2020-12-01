@@ -1,5 +1,5 @@
 [flake8]
-exclude = build,dist
+exclude = build,dist,.tox
 max-complexity = 10
 application-import-names = advent_of_code_2020
 import-order-style = google
