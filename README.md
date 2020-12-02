@@ -3,6 +3,7 @@
 _Description:_ Repo for Advent of Code 2020.
 
 Day 1: Done
+Day 2: Done
 
 ## Usage
 
@@ -25,8 +26,10 @@ To run the linter run `invoke lint`.
 ## Documentation
 
 The full docs exist [here](.\build\sphinx\html\index.html).
-If not there then run `invoke preview-docs` and it will open them in a broswer.
-To publish new docs to Read My Docs server, run `invoke docs`
+If not there then run `invoke preview-docs` and it will open them in a browser.
+To publish new docs to Read My Docs server, run `invoke docs`.
+
+(Read My Docs not yet set up, so just run `invoke preview-docs` to see docs.)
 
 ## Testing
 
