@@ -3,13 +3,13 @@ from pathlib import Path
 
 
 def get_passwords():
-    """Get the passwords from .dat file.
+    """Get the passwords from the .dat file.
 
     Returns:
         dict: Policy criteria as key and passwords in a list as value.
     """
     passwords = {}
-    data_file = Path("./data_1.dat")
+    data_file = Path("./data_2.dat")
     with open(data_file, "r") as read_file:
         values = read_file.read().splitlines()
     for value in values:
@@ -26,14 +26,14 @@ def get_valid_passwords_policy_one(passwords):
     """Get valid passwords.
 
     A valid password is one that contains the letter in the critera for
-    at least the minumum amount and no more than the maximum amount.
-    The min and max amounts are also definied in the criteria.
+    at least the minimum amount and no more than the maximum amount.
+    The min and max amounts are also defined in the criteria.
 
     The criteria is the key, the passwords with that criteria
     are in a list as the value.
 
     Args:
-        passwords: Dictionary of passwords, policy criteria as key
+        passwords (dict): Dictionary of passwords, policy criteria as key
             and passwords in a list as value.
 
     Returns:
@@ -54,9 +54,9 @@ def get_valid_passwords_policy_one(passwords):
 def get_valid_passwords_policy_two(passwords):
     """Get valid passwords.
 
-    A valid password is one that contains the letter in the critera at
+    A valid password is one that contains the letter in the criteria at
     either the first position or the second position, not both.
-    The positions are also definied in the criteria. These policies have
+    The positions are also defined in the criteria. These policies have
     no concept of index zero so position 1 would be the first position,
     not the second.
 
@@ -64,7 +64,7 @@ def get_valid_passwords_policy_two(passwords):
     are in a list as the value.
 
     Args:
-        passwords: Dictionary of passwords, policy criteria as key
+        passwords (dict): Dictionary of passwords, policy criteria as key
             and passwords in a list as value.
 
     Returns:

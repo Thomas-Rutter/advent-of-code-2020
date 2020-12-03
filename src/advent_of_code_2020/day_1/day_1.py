@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 def get_expense_report():
-    """Get the expense report from .dat file.
+    """Get the expense report from the .dat file.
 
     Returns:
         list: Expense report.
