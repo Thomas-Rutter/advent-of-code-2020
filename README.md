@@ -4,6 +4,7 @@ _Description:_ Repo for Advent of Code 2020.
 
 * Day 1: :heavy_check_mark:
 * Day 2: :heavy_check_mark:
+* Day 3: :heavy_check_mark:
 
 ## Usage
 

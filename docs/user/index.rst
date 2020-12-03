@@ -18,7 +18,7 @@ The issue to solve on this day was:
     In a given list, find the two entries that sum to 2020 and then multiply
     those two numbers together.
 
-The story behind this the accountant elves need you to sort out
+The story behind this is that the accountant elves need you to sort out
 the expense report. You'd think as accountants they would be able to sort
 it out themselves but I guess not.
 
@@ -27,7 +27,7 @@ Step 1 was just saving the list as a data_1.dat file, and reading that in.
 .. code-block:: python
 
     def get_expense_report():
-        """Get the expense report from .dat file.
+        """Get the expense report from the .dat file.
 
         Returns:
             list: Expense report.
@@ -88,7 +88,7 @@ Then there was a second part to the issue, which was:
 So yeah doesn't that sound oddly familiar?
 
 Well for this I just made Jim use enumerate, created a third for loop (Phil) to
-give use number_3, and made the code add the three numbers together and see if
+give us number_3, and made the code add the three numbers together and see if
 they sum up to 2020.
 
 .. code-block:: python
@@ -122,7 +122,7 @@ First up:
 .. code-block:: text
 
     In a list of passwords, find the amount of "valid" passwords.
-    Each item in the list has two parts, the critera and the password itself.
+    Each item in the list has two parts, the criteria and the password itself.
     The criteria indicates the lowest and highest number of times a given
     letter must appear for the password to be valid.
 
@@ -142,7 +142,7 @@ and the passwords with that criteria in a list as the value.
 .. code-block:: python
 
     def get_passwords():
-        """Get the passwords from .dat file.
+        """Get the passwords from the .dat file.
 
         Returns:
             dict: Policy criteria as key and passwords in a list as value.
@@ -172,7 +172,7 @@ passwords for a certain criteria.
 
 Next step was parsing the criteria string, for this I just used split() to
 format the string. Then it was just an if statement to see if the password
-was valid based off the criteria. If it was valid then just add 1 to an
+was valid based on the criteria. If it was valid then just add 1 to an
 int variable I created at the start of the function.
 
 .. code-block:: python
@@ -180,9 +180,9 @@ int variable I created at the start of the function.
     def get_valid_passwords_policy_one(passwords):
         """Get valid passwords.
 
-        A valid password is one that contains the letter in the critera for
-        at least the minumum amount and no more than the maximum amount.
-        The min and max amounts are also definied in the criteria.
+        A valid password is one that contains the letter in the criteria for
+        at least the minimum amount and no more than the maximum amount.
+        The min and max amounts are also defined in the criteria.
 
         The criteria is the key, the passwords with that criteria
         are in a list as the value.
@@ -240,9 +240,9 @@ to the valid_passwords int var if that if statement is met.
     def get_valid_passwords_policy_two(passwords):
         """Get valid passwords.
 
-        A valid password is one that contains the letter in the critera at
+        A valid password is one that contains the letter in the criteria at
         either the first position or the second position, not both.
-        The positions are also definied in the criteria. These policies have
+        The positions are also defined in the criteria. These policies have
         no concept of index zero so position 1 would be the first position,
         not the second.
 
@@ -273,3 +273,137 @@ to the valid_passwords int var if that if statement is met.
 
 And that's day 2 done! This was a nice little challenge and woo I got two
 more gold stars!
+
+
+Day 3
+-----
+
+The one that made me learn about modulo.
+First up:
+
+.. code-block:: text
+
+    In a given "geology", with trees represented by "#"s and open squares
+    represented by "."s, figure out how many trees you'll encounter with the
+    path you are taking. You are only able to move in the same repeating
+    pattern, like 3 to the right and 1 down. The geology repeats to the right
+    many times.
+
+    The geology would look like:
+    ..##.......
+    #...#...#..
+    .#....#..#.
+    ..#.#...#.#
+    .#...##..#.
+    ..#.##.....
+
+And the story behind this is you are on ya cheap toboggan which has just
+the weirdest steering and you don't want to hit that many trees.
+
+As the geology is just a big string, I didn't need to do anything fancy
+when reading it into the script.
+
+Part 1
+******
+
+For the first part we were told that our movement is 3 to the right and 1 down,
+then we had to figure out how many trees we'd encounter (land on) by the time
+we reach the end of the geology.
+
+So step 1 was setting up a while loop so when our y position was greater than
+the amount of lines we'd be done. Before that loop I split the geology into
+lines, set the encountered_trees, x_pos and y_pos variables to 0, and got the
+length of the lines.
+
+Then, in the loop, it was a case of setting the current_line using the y_pos
+and seeing if we landed on a tree. If we landed on a tree we add that to the
+encountered_trees int.
+
+I used modulo to make sure if the x_pos went pass the line_length it would
+loop back around, then it was just does that index on the
+current_line equal "#"
+
+.. code-block:: python
+
+    def get_number_of_encountered_trees(geology, right, down):
+        """Get the number of trees we would encounter in the given geology.
+
+        The right and down parameters state how we are moving through the geology.
+
+        Args:
+            geology (str): Geology of area, "#" are trees.
+            right (int): The amount to move right.
+            down (int): The amount to move down.
+
+        Returns:
+            int: The amount of trees we encounter.
+        """
+        encountered_trees = 0
+        lines = geology.splitlines()
+        line_length = len(lines[0])
+        x_pos, y_pos = 0, 0
+        while y_pos < len(lines):
+            current_line = lines[y_pos]
+            encountered_trees += current_line[x_pos % line_length] == "#"
+
+            x_pos += right
+            y_pos += down
+
+        return encountered_trees
+
+Was pretty happy with this and learning how to use modulo was handy!
+Totally didn't do some stupid "if x_pos is greater than line_length then x_pos
+now equals x_pos minus line_lenght" logic before finding out I can just use %.
+
+Part 2
+******
+
+So despite the naming making very little sense, we know we need to
+check all "slopes". Each slope is just the movement pattern we take.
+Again the naming makes no sense. The slopes (patterns) are:
+
+.. code-block:: text
+
+    Right 1, down 1.
+    Right 3, down 1. (This is the slope from part 1.)
+    Right 5, down 1.
+    Right 7, down 1.
+    Right 1, down 2.
+
+So for each slope, we want to get the amount of trees we'd encounter
+and then multiple the trees together. So in the example geology, using
+those slopes we encountered: 2, 7, 3, 4, and 2 trees, we then multiplied those numbers together to get 336.
+
+So to calculate this it was just a case of for each slope, I pass the
+pattern to the get_number_of_encountered_trees() function and append
+the result into a list.
+
+Once we've got all the results, it's just a case of multiplying them together and boom our 6th gold star!
+
+.. code-block:: python
+
+    def get_multiplied_number_of_encountered_trees(geology, slopes):
+        """Get the total number of trees we would encounter in the given geology.
+
+        Args:
+            geology (str): Geology of area.
+            slopes (list): tuples of the right and down parameters to use.
+
+        Returns:
+            int: The total amount of possible trees we encounter.
+        """
+        results = []
+        for slope in slopes:
+            encountered_trees = get_number_of_encountered_trees(
+                geology, slope[0], slope[1]
+            )
+            results.append(encountered_trees)
+
+        multiplied_trees = 1
+        for result in results:
+            multiplied_trees = multiplied_trees * result
+
+        return multiplied_trees
+
+This was the first time I've dealt with grid stuff and using the modulo
+operator in python so I'm pretty happy with how it turned out!
