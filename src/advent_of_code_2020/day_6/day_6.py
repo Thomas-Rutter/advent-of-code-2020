@@ -43,8 +43,7 @@ def get_sum_of_counts(groups, any=True):
 
     Args:
         groups (list): The list of groups, each group is a string.
-        any (bool): Whether to count for anyone's answer or everyone's common
-            answer. (default: {True})
+        any (bool): To count any answer or common answer. (default: {True})
 
     Returns:
         int: The sum count of the groups.

@@ -4,7 +4,7 @@ import unittest
 from advent_of_code_2020.day_6 import day_6
 
 
-TEST_LIST = ['abc', 'a\nb\nc', 'ab\nac', 'a\na\na\na', 'b']
+TEST_LIST = ["abc", "a\nb\nc", "ab\nac", "a\na\na\na", "b"]
 
 
 class TestDay6(unittest.TestCase):
